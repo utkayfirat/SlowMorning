@@ -2,3 +2,4 @@ clock_name: "ReleasePlay Saat" # Bar Name
 morning_duration: 30 # 30 mins
 night_duration: 15 # 15 mins
 skip_night_on_sleep: true # Enables night skipping when a player sleeps (true or false)
+use_clock: true # true -> use clock, false -> hide clock

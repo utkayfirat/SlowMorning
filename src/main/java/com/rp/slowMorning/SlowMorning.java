@@ -21,6 +21,7 @@ public final class SlowMorning extends JavaPlugin {
     private Map<Player, BossBar> playerBossBars = new HashMap<>();
     private String clockName;
     private int counter = 0;
+    private boolean useClock = true;
 
     @Override
     public void onEnable() {
@@ -31,6 +32,7 @@ public final class SlowMorning extends JavaPlugin {
         morningDuration = getConfig().getInt("morning_duration", 30);
         nightDuration = getConfig().getInt("night_duration", 15);
         clockName = getConfig().getString("clock_name", "ReleasePlay Saat");
+        useClock = getConfig().getBoolean("use_clock", true);
 
         int morningSlowdownFactor = (morningDuration * 60) / 300;
         int nightSlowdownFactor = (nightDuration * 60) / 420;
@@ -39,28 +41,30 @@ public final class SlowMorning extends JavaPlugin {
 
             @Override
             public void run() {
+
                 World world = Bukkit.getWorlds().get(0);
                 long time = world.getTime();
 
-                int hours = (int) ((time / 1000.0) * 1.5) % 24;
-                int minutes = (int) ((time % 1000) / 1000.0 * 60);
+                if(useClock){ // true -> bug issue - time warp
+                    int hours = (int) ((time / 1000.0) * 1.5) % 24;
+                    int minutes = (int) ((time % 1000) / 1000.0 * 60);
 
-                String formattedTime = String.format("%02d:%02d", hours, minutes);
+                    String formattedTime = String.format("%02d:%02d", hours, minutes);
 
-                String message = ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "" +clockName+" - " + ChatColor.LIGHT_PURPLE + formattedTime;
+                    String message = ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "" +clockName+" - " + ChatColor.LIGHT_PURPLE + formattedTime;
 
-                for (Player player : Bukkit.getOnlinePlayers()) {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
 
-                    if (player.getWorld().getName().equals("world_the_end")) {
-                        removeBossBar(player);
-                        continue;
+                        if (player.getWorld().getName().equals("world_the_end")) {
+                            removeBossBar(player);
+                            continue;
+                        }
+
+                        updateOrCreateBossBar(player, message);
                     }
-
-                    updateOrCreateBossBar(player, message);
                 }
 
                 updateWorldTime(world, time, morningSlowdownFactor, nightSlowdownFactor);
-                counter++;
             }
         }.runTaskTimer(this, 0L, 20L);
     }
@@ -70,6 +74,7 @@ public final class SlowMorning extends JavaPlugin {
         this.nightSkipped = nightSkipped;
     }
 
+    // bug issue - time warp
     private void updateOrCreateBossBar(Player player, String message) {
         BossBar existingBar = getExistingBossBarForPlayer(player);
         if (existingBar == null) {
@@ -94,10 +99,10 @@ public final class SlowMorning extends JavaPlugin {
         if(nightSkipped){
             world.setStorm(false);
             world.setThundering(false);
-            world.setTime(4000);
+            world.setTime(0); // 4000 to 0
             counter = 0;
             nightSkipped = false;
-        }else{
+        } else {
             if (time >= 0 && time < 6000) {
                 if (counter % morningSlowdownFactor == 0) {
                     world.setTime(time + 1);
@@ -110,6 +115,7 @@ public final class SlowMorning extends JavaPlugin {
                 world.setTime(time + 10);
             }
         }
+        counter++;
     }
 
     private BossBar getExistingBossBarForPlayer(Player player) {
@@ -122,8 +128,10 @@ public final class SlowMorning extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        /*
         for (Player player : Bukkit.getOnlinePlayers()) {
             removeBossBar(player);
         }
+         */
     }
 }
