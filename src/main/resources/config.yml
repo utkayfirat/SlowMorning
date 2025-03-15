@@ -1,4 +1,4 @@
-
 clock_name: "ReleasePlay Saat" # Bar Name
 morning_duration: 30 # 30 mins
 night_duration: 15 # 15 mins
+skip_night_on_sleep: true # true or false (skip night on sleep mode)

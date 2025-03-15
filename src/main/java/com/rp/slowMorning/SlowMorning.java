@@ -25,6 +25,9 @@ public final class SlowMorning extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+
+        getServer().getPluginManager().registerEvents(new SleepTogether(this), this);
+
         morningDuration = getConfig().getInt("morning_duration", 30);
         nightDuration = getConfig().getInt("night_duration", 15);
         clockName = getConfig().getString("clock_name", "ReleasePlay Saat");
