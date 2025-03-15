@@ -18,8 +18,8 @@
 - skip_night_on_sleep: If set to true, a single player sleeping will skip the night.
 
 # config.yml
-<code>clock_name: "ReleasePlay Saat"  # Bar Name <br>
- morning_duration: 30  # 30 mins  <br>
- night_duration: 15  # 15 mins  <br>
+<code>clock_name: "ReleasePlay Saat"  # Bar Name<br>
+ morning_duration: 30  # 30 mins<br>
+ night_duration: 15  # 15 mins<br>
  skip_night_on_sleep: true  # Enables night skipping when a player sleeps
 </code>
