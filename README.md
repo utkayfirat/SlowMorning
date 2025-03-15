@@ -12,16 +12,19 @@ Additionally, if enabled in the configuration, the Night Skip feature allows the
 - BossBar Display: Shows the current time to players on a dynamically updated BossBar.
 - Automatic BossBar Setup for New Players: Each new player who joins the server will automatically have the BossBar set up displaying the current time.
 - Night Skip Feature: If enabled in the configuration, a single player sleeping will skip the night for the entire server.
+- UI Close / Open
 
 # Configuration:
 - clock_name: Custom name for the BossBar that will display the current time.
 - morning_duration: Duration of the morning period.
 - night_duration: Duration of the night period.
 - skip_night_on_sleep: If set to true, a single player sleeping will skip the night.
+- use_clock: false # true -> use clock, false -> hide clock
 
 # config.yml
 <code>clock_name: "ReleasePlay Saat"  # Bar Name<br>
  morning_duration: 30  # 30 mins<br>
  night_duration: 15  # 15 mins<br>
  skip_night_on_sleep: true  # Enables night skipping when a player sleeps
+ use_clock: false # true -> use clock, false -> hide clock
 </code>
