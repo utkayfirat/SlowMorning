@@ -1,5 +1,6 @@
 # Showcase
-<img src="https://raw.githubusercontent.com/utkayfirat/SlowMorning/refs/heads/main/gameplay.png">
+<img src="https://raw.githubusercontent.com/utkayfirat/SlowMorning/refs/heads/main/gameplay.png"><br>
+
 # SlowMorning
 <i>SlowMorning is a plugin that slows down the passage of time in the Minecraft world. You can configure the duration of the morning and night periods, and the plugin will make time pass slower during specific intervals. This plugin shows the current time to players via a BossBar that updates every second, providing visual feedback on the passage of time.</i>
 
@@ -17,8 +18,7 @@
 - skip_night_on_sleep: If set to true, a single player sleeping will skip the night.
 
 # config.yml
-<code>
-clock_name: "ReleasePlay Saat"  # Bar Name <br>
+<code>clock_name: "ReleasePlay Saat"  # Bar Name <br>
 morning_duration: 30  # 30 mins  <br>
 night_duration: 15  # 15 mins  <br>
 skip_night_on_sleep: true  # Enables night skipping when a player sleeps
