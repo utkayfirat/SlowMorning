@@ -1,7 +1,7 @@
 # Showcase
 <img src="https://raw.githubusercontent.com/utkayfirat/SlowMorning/refs/heads/main/gameplay.png"><br>
 
-# SlowMorning
+# SlowMorning Plugin 1.21.x PaperMC
 <i>SlowMorning is a plugin that slows down the passage of time in the Minecraft world. You can configure the duration of the morning and night periods, and the plugin will make time pass slower during specific intervals. This plugin shows the current time to players via a BossBar that updates every second, providing visual feedback on the passage of time.
 
 Additionally, if enabled in the configuration, the Night Skip feature allows the night to be skipped when a single player sleeps, making it easier to transition to the next day without requiring multiple players to sleep.</i>
