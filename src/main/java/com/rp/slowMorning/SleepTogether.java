@@ -3,6 +3,7 @@ package com.rp.slowMorning;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
@@ -17,16 +18,21 @@ public class SleepTogether implements Listener {
 
     @EventHandler
     public void onPlayerSleep(PlayerBedEnterEvent event) {
-        boolean st = plugin.getConfig().getBoolean("skip_night_on_sleep", true);
-        if(!st) return;
+        boolean skipNight = plugin.getConfig().getBoolean("skip_night_on_sleep", true);
+        if (!skipNight) return;
 
-        String playerName = event.getPlayer().getName();
-        World world = event.getPlayer().getWorld();
-        long time = world.getTime();
-        if (time >= 12000 && time < 24000) {
-            world.setTime(0);
-            String message = ChatColor.DARK_RED+"Server: "+ ChatColor.GOLD + playerName + ChatColor.YELLOW + " has skipped the night by sleeping!";
+        if (event.getBedEnterResult() != PlayerBedEnterEvent.BedEnterResult.OK) return;
+
+        Player player = event.getPlayer();
+        World world = player.getWorld();
+
+        if (world.getTime() >= 12541 && world.getTime() <= 23458) {
+            plugin.setNightSkipped(true);
+
+            String message = ChatColor.RED + "Server: " + ChatColor.GOLD + player.getName() +
+                    ChatColor.YELLOW + " has skipped the night by sleeping!";
             Bukkit.broadcastMessage(message);
         }
     }
+
 }

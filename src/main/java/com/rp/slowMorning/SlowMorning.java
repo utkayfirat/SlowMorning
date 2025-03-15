@@ -65,6 +65,11 @@ public final class SlowMorning extends JavaPlugin {
         }.runTaskTimer(this, 0L, 20L);
     }
 
+    private boolean nightSkipped = false;
+    public void setNightSkipped(boolean nightSkipped) {
+        this.nightSkipped = nightSkipped;
+    }
+
     private void updateOrCreateBossBar(Player player, String message) {
         BossBar existingBar = getExistingBossBarForPlayer(player);
         if (existingBar == null) {
@@ -86,16 +91,24 @@ public final class SlowMorning extends JavaPlugin {
     }
 
     private void updateWorldTime(World world, long time, int morningSlowdownFactor, int nightSlowdownFactor) {
-        if (time >= 0 && time < 6000) {
-            if (counter % morningSlowdownFactor == 0) {
-                world.setTime(time + 1);
+        if(nightSkipped){
+            world.setStorm(false);
+            world.setThundering(false);
+            world.setTime(4000);
+            counter = 0;
+            nightSkipped = false;
+        }else{
+            if (time >= 0 && time < 6000) {
+                if (counter % morningSlowdownFactor == 0) {
+                    world.setTime(time + 1);
+                }
+            } else if (time >= 18000 && time < 24000) {
+                if (counter % nightSlowdownFactor == 0) {
+                    world.setTime(time + 1);
+                }
+            } else {
+                world.setTime(time + 10);
             }
-        } else if (time >= 18000 && time < 24000) {
-            if (counter % nightSlowdownFactor == 0) {
-                world.setTime(time + 1);
-            }
-        } else {
-            world.setTime(time + 10);
         }
     }
 
