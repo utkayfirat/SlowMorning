@@ -10,11 +10,11 @@
 - Automatic BossBar Setup for New Players: Each new player who joins the server will automatically have the BossBar setup displaying the current time.
 
 # Configuration:
- clock_name: Custom name for the BossBar that will display the current time.
- morning_duration: Duration of the morning period
+ clock_name: Custom name for the BossBar that will display the current time.<br>
+ morning_duration: Duration of the morning period<br>
  night_duration: Duration of the night period
 
 # config.yml
- clock_name: "ReleasePlay Saat" # Bar Name
- morning_duration: 30 # 30 mins
+ clock_name: "ReleasePlay Saat" # Bar Name<br>
+ morning_duration: 30 # 30 mins<br>
  night_duration: 15 # 15 mins
