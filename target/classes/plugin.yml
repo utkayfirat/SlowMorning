@@ -1,0 +1,4 @@
+name: SlowMorning
+version: '1.0-SNAPSHOT'
+main: com.rp.slowMorning.SlowMorning
+api-version: '1.21'
